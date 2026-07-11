@@ -136,3 +136,12 @@ Enabled Sites
 **Author:** Ahmed Emad
 
 Built as part of my Cloud Engineering learning journey.
+
+
+---
+
+## Screenshot
+
+### Portfolio Website
+
+![Portfolio Homepage](images/portfolio-homepage.png)
