@@ -1,18 +1,25 @@
-# Nginx Virtual Hosts on Ubuntu
+# Nginx Multi-Site Hosting on Ubuntu
 
 ## Overview
 
-This project demonstrates how to host multiple websites on a single Ubuntu Linux server using Nginx Virtual Hosts.
+This project demonstrates how to host multiple websites on a single Ubuntu Linux server using Nginx.
 
-The project was built as part of my Cloud Engineering learning journey.
+The server hosts:
+
+- A portfolio website on the default HTTP port (80)
+- A second website on port 8080
+
+The project was built as part of my Cloud Engineering learning journey and demonstrates Linux server administration, Nginx configuration, SSH remote management, and Git version control.
 
 ---
 
 ## Features
 
-- Ubuntu Linux Server
+- Ubuntu 24.04 LTS
 - Nginx Web Server
-- Multiple Virtual Hosts
+- Hosted multiple websites on a single server
+- Configured separate document roots
+- Configured multiple listening ports (80 & 8080)
 - SSH Remote Administration
 - HTML & CSS Landing Pages
 - Git Version Control
@@ -22,7 +29,7 @@ The project was built as part of my Cloud Engineering learning journey.
 
 ## Project Structure
 
-```
+```text
 /var/www
 ├── html
 │   └── index.html
@@ -32,9 +39,18 @@ The project was built as part of my Cloud Engineering learning journey.
 
 ---
 
+## Site Configuration
+
+| URL | Document Root |
+|------|---------------|
+| http://192.168.1.24 | `/var/www/portfolio` |
+| http://192.168.1.24:8080 | `/var/www/html` |
+
+---
+
 ## Nginx Configuration
 
-```
+```text
 /etc/nginx/sites-available
 ├── default
 └── portfolio
@@ -42,10 +58,31 @@ The project was built as part of my Cloud Engineering learning journey.
 
 Enabled Sites
 
-```
+```text
 /etc/nginx/sites-enabled
 ├── default
 └── portfolio
+```
+
+---
+
+## Architecture
+
+```text
+                 Client
+          (Browser / SSH)
+                 │
+                 ▼
+        Ubuntu Linux Server
+           192.168.1.24
+                 │
+                 ▼
+               Nginx
+        ┌────────┴────────┐
+        ▼                 ▼
+     Port 80          Port 8080
+ Portfolio Site      Original Site
+/var/www/portfolio   /var/www/html
 ```
 
 ---
@@ -59,30 +96,43 @@ Enabled Sites
 - SSH
 - Git
 - GitHub
-- VMware Workstation
+
+---
+
+## Skills Demonstrated
+
+- Linux System Administration
+- Nginx Configuration
+- Multi-Site Hosting
+- SSH Remote Management
+- Linux File Permissions
+- Git Version Control
+- GitHub Repository Management
 
 ---
 
 ## What I Learned
 
-- Linux Terminal
-- Linux File Permissions
-- SSH Remote Access
-- Nginx Server Blocks
-- Virtual Hosts
-- Git Workflow
-- GitHub Authentication
+- Linux command-line navigation
+- Managing users and file permissions
+- Configuring Nginx server blocks
+- Hosting multiple websites on a single server
+- Configuring Nginx to listen on multiple ports
+- Managing websites over SSH
+- Using Git and GitHub for version control
 
 ---
 
 ## Future Improvements
 
-- HTTPS using Let's Encrypt
-- Deploy a Flask application
-- Deploy a Node.js application
-- Host on AWS EC2
-- Configure a reverse proxy
+- Configure HTTPS using Let's Encrypt
+- Deploy a Flask application behind Nginx
+- Containerize the application using Docker
+- Deploy the project to AWS EC2
+- Configure CI/CD using GitHub Actions
 
 ---
 
-Built by Ahmed Emad
+**Author:** Ahmed Emad
+
+Built as part of my Cloud Engineering learning journey.
